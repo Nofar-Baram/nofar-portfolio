@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
 import {
   Sun, Moon, ChevronRight, X, ArrowLeft, Sparkles,
-  Layers, Brain, Coffee, Shield, Figma, Code2,
-  Gamepad2, Mail, Linkedin, Zap, Database,
+  Layers, Brain, Coffee, Shield, PenTool, Code2,
+  Gamepad2, Mail, ExternalLink, Zap, Database,
   Cpu as CpuIcon, Ghost, Wind, BookOpen
 } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useParams, useNavigate, NavLink } from "react-router-dom";
@@ -1187,7 +1187,7 @@ const PROJECTS = [
   },
   {
     id: 7,
-    icon: <Figma size={17} />,
+    icon: <PenTool size={17} />,
     tags: [{ l: "Product Design" }, { l: "Mockup" }, { l: "Mobile" }],
     title: "Pilpeled",
     tagline: "A bold product design concept brought to life through high-fidelity mobile mockups.",
@@ -1623,7 +1623,7 @@ const AboutPage = () => {
               <div className="kicker" style={{ marginBottom: "1rem" }}>Tech Stack</div>
               <div className="stack-g">
                 {[
-                  { icon: <Figma size={14} />, l: "Figma", s: "UX/UI & Prototyping" },
+                  { icon: <PenTool size={14} />, l: "Figma", s: "UX/UI & Prototyping" },
                   { icon: <Code2 size={14} />, l: "HTML · CSS · JS", s: "Frontend" },
                   { icon: <Gamepad2 size={14} />, l: "Unity + C#", s: "Game Dev & UI" },
                   { icon: <Brain size={14} />, l: "LLM / GenAI", s: "AI Integration" },
@@ -1673,7 +1673,7 @@ const ContactPage = () => {
           <p className="contact-sub">Open to UX design roles, creative tech collaborations, and AI-driven product challenges. Let's make something worth using.</p>
           <div className="clinks">
             <a className="clink" href="mailto:Nofbar344@gmail.com"><Mail size={14} /> Nofbar344@gmail.com</a>
-            <a className="clink" href="https://www.linkedin.com/in/nofar-baram/" target="_blank" rel="noreferrer"><Linkedin size={14} /> LinkedIn</a>
+            <a className="clink" href="https://www.linkedin.com/in/nofar-baram/" target="_blank" rel="noreferrer"><ExternalLink size={14} /> LinkedIn</a>
           </div>
         </div>
       </FadeUp>
