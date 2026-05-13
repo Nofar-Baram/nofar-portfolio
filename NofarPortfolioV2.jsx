@@ -280,7 +280,7 @@ const G = () => (
       50%       { transform: translate(-50%,-50%) scale(1.7); box-shadow: 0 0 28px 10px rgba(6,182,212,0.6), 0 0 70px 30px rgba(167,139,250,0.2); }
     }
     .orbit-wrap {
-      position: relative; width: 340px; height: 340px; flex-shrink: 0;
+      position: relative; width: 380px; height: 380px; flex-shrink: 0;
     }
     .orbit-wrap::before {
       content: ''; position: absolute; inset: -40px; border-radius: 50%;
@@ -291,7 +291,7 @@ const G = () => (
     .orbit-center {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%,-50%);
-      width: 128px; height: 128px; border-radius: 50%;
+      width: 33.68%; height: 33.68%; border-radius: 50%;
       overflow: hidden; border: 1.5px solid var(--borderH);
       box-shadow: var(--shadowH), 0 0 0 6px rgba(99,102,241,0.08); z-index: 4;
     }
@@ -300,19 +300,19 @@ const G = () => (
       border-radius: 50%;
     }
     .orbit-ring-1 {
-      width: 200px; height: 200px; margin: -100px 0 0 -100px;
+      width: 52.63%; height: 52.63%; margin: -26.32% 0 0 -26.32%;
       border: 1px solid rgba(6,182,212,0.38);
       box-shadow: 0 0 22px rgba(6,182,212,0.12), inset 0 0 18px rgba(6,182,212,0.06);
       animation: orbit-cw 11s linear infinite;
     }
     .orbit-ring-2 {
-      width: 280px; height: 280px; margin: -140px 0 0 -140px;
+      width: 73.68%; height: 73.68%; margin: -36.84% 0 0 -36.84%;
       border: 1px dashed rgba(167,139,250,0.32);
       box-shadow: 0 0 18px rgba(167,139,250,0.1);
       animation: orbit-ccw 18s linear infinite;
     }
     .orbit-ring-3 {
-      width: 340px; height: 340px; margin: -170px 0 0 -170px;
+      width: 89.47%; height: 89.47%; margin: -44.74% 0 0 -44.74%;
       border: 1px solid rgba(6,182,212,0.16);
       box-shadow: 0 0 24px rgba(6,182,212,0.07);
       animation: orbit-cw 28s linear infinite;
@@ -751,16 +751,24 @@ const G = () => (
     .ba-label      { position: absolute; bottom: 0.75rem; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(0,0,0,0.4); color: #fff; padding: 0.18rem 0.55rem; border-radius: 100px; }
 
     /* ── Live: Node Graph ── */
-    .node-graph { width: 100%; padding: 0.5rem 0; }
-    .ng-svg { width: 100%; height: 240px; }
-    .node-circle { fill: var(--bg3); stroke: var(--borderH); stroke-width: 1.5; }
-    .node-text { font-family: 'Inter', sans-serif; font-size: 9px; fill: var(--text); text-anchor: middle; font-weight: 600; }
-    .node-sub  { font-family: 'Inter', sans-serif; font-size: 7px; fill: var(--muted); text-anchor: middle; }
+    .node-graph { width: 100%; padding: 0.4rem 0; }
+    .ng-svg { width: 100%; height: 265px; }
+    .node-text { font-family: 'Inter',sans-serif; font-size: 9px; fill: var(--text); text-anchor: middle; font-weight: 600; }
+    .node-sub  { font-family: 'Inter',sans-serif; font-size: 7px; fill: var(--muted); text-anchor: middle; }
     @keyframes dash { to { stroke-dashoffset: 0; } }
-    .flow-path { stroke: var(--text); stroke-width: 1.5; fill: none; stroke-dasharray: 6 3; opacity: 0.25; }
-    .flow-path.active { opacity: 0.9; animation: dash 1.2s linear infinite; }
     @keyframes nodeFlow { 0%,100% { opacity:0.3; } 50% { opacity:1; } }
-    .node-dot { fill: var(--text); animation: nodeFlow 1.8s ease-in-out infinite; }
+    .flow-path        { stroke: rgba(255,255,255,0.14); stroke-width:1.5; fill:none; stroke-dasharray:5 4; }
+    .flow-path.past   { stroke:#06b6d4; opacity:0.6; stroke-width:1.5; stroke-dasharray:5 4; }
+    .flow-path.active { stroke:#06b6d4; opacity:1;   stroke-width:2;   stroke-dasharray:5 4; animation:dash 1.4s linear infinite; }
+    .node-dot { animation: nodeFlow 1.8s ease-in-out infinite; }
+    .syn-tooltip {
+      min-height: 38px; margin: 0.45rem 0 0; padding: 0.5rem 0.9rem;
+      background: rgba(8,13,26,0.88); border: 1px solid rgba(6,182,212,0.25);
+      border-radius: 10px; backdrop-filter: blur(14px);
+      font-size: 0.65rem; color: var(--muted); line-height: 1.55;
+      transition: opacity 0.18s;
+    }
+    .syn-tt-title { font-weight: 700; color: var(--text); margin-right: 0.3rem; }
 
     /* ── Live: Safety Flow ── */
     .logic-flow { display: flex; flex-direction: column; gap: 0.55rem; }
@@ -837,11 +845,8 @@ const G = () => (
     /* ── Responsive ── */
     @media (max-width: 820px) {
       .hero { flex-direction: column; padding: 3rem 1.25rem; }
-      .orbit-wrap { width: 240px; height: 240px; align-self: center; }
-      .orbit-ring-1 { width: 140px; height: 140px; margin: -70px 0 0 -70px; }
-      .orbit-ring-2 { width: 200px; height: 200px; margin: -100px 0 0 -100px; }
-      .orbit-ring-3 { width: 240px; height: 240px; margin: -120px 0 0 -120px; }
-      .orbit-center { width: 90px; height: 90px; }
+      .orbit-wrap { width: min(320px, 82vw); height: min(320px, 82vw); align-self: center; }
+      .orbit-dot  { width: 30px; height: 30px; border-radius: 8px; }
       .bento { grid-template-columns: 1fr; }
       .bcard-feat { grid-column: span 1; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -869,114 +874,205 @@ const NinjaPhone = () => (
   </div>
 );
 
-/* 2. Before/After Slider */
-const CognyteSl = () => {
-  const [pos, setPos] = useState(50);
-  const ref = useRef(null);
-  const dragging = useRef(false);
-  const move = useCallback((clientX) => {
-    if (!ref.current || !dragging.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    setPos(Math.min(Math.max(((clientX - rect.left) / rect.width) * 100, 4), 96));
-  }, []);
-  useEffect(() => {
-    const up = () => { dragging.current = false; };
-    const mm = (e) => move(e.touches ? e.touches[0].clientX : e.clientX);
-    window.addEventListener("mouseup", up); window.addEventListener("mousemove", mm);
-    window.addEventListener("touchend", up); window.addEventListener("touchmove", mm);
-    return () => { window.removeEventListener("mouseup", up); window.removeEventListener("mousemove", mm); window.removeEventListener("touchend", up); window.removeEventListener("touchmove", mm); };
-  }, [move]);
-  return (
-    <div>
-      <div ref={ref} className="slider-wrap" onMouseDown={e => { dragging.current = true; move(e.clientX); }} onTouchStart={e => { dragging.current = true; move(e.touches[0].clientX); }}>
-        <div className="slider-before">
-          <div style={{ fontSize: "0.58rem", color: "#888", letterSpacing: "0.12em", marginBottom: "0.6rem" }}>BEFORE -Manual Salesforce</div>
-          {["Deal Stage: ???", "MEDDPICC: Incomplete", "Close Date: TBD", "Notes: (empty)"].map((t, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.75)", borderRadius: "8px", padding: "0.4rem 0.7rem", marginBottom: "0.35rem", fontSize: "0.72rem", color: "#555", display: "flex", alignItems: "center", gap: "0.45rem" }}>
-              <div style={{ width: "5px", height: "5px", borderRadius: "50%", background: i < 2 ? "#f87171" : "#fb923c" }} />{t}
-            </div>
-          ))}
-          <div className="ba-label" style={{ left: "0.65rem" }}>BEFORE</div>
-        </div>
-        <div className="slider-clip" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-          <div className="slider-after">
-            <div style={{ fontSize: "0.58rem", color: "#aaa", letterSpacing: "0.12em", marginBottom: "0.6rem" }}>AFTER -Back-Up Companion</div>
-            {["Deal Stage: Validation ✓", "MEDDPICC: 94% complete", "Close Date: Q3 2025 ✓", "AI Copilot: Active 🤖"].map((t, i) => (
-              <div key={i} style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", padding: "0.4rem 0.7rem", marginBottom: "0.35rem", fontSize: "0.72rem", color: "#eee", display: "flex", alignItems: "center", gap: "0.45rem" }}>
-                <div style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#4ade80" }} />{t}
-              </div>
-            ))}
-            <div className="ba-label" style={{ right: "0.65rem" }}>AFTER</div>
-          </div>
-        </div>
-        <div className="slider-handle" style={{ left: `${pos}%` }}>
-          <div className="slider-knob"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 4L2 8L5 12M11 4L14 8L11 12" stroke="#888" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
-        </div>
-      </div>
-      <p style={{ fontSize: "0.7rem", color: "var(--muted)", textAlign: "center", marginTop: "0.65rem" }}>← Drag to compare</p>
-    </div>
-  );
-};
-
-/* 3. Synapse Node Graph */
+/* 3. Synapse Pipeline */
 const synNodes = [
-  { id: "user", x: 70, y: 130, label: "Designer", sub: "Input", r: 30 },
-  { id: "super", x: 230, y: 130, label: "Super", sub: "Agent", r: 36 },
-  { id: "research", x: 390, y: 60, label: "Research", sub: "Agent", r: 28 },
-  { id: "arch", x: 390, y: 130, label: "Architect", sub: "Agent", r: 28 },
-  { id: "ux", x: 390, y: 200, label: "UX Flow", sub: "Agent", r: 28 },
-  { id: "out", x: 530, y: 130, label: "Output", sub: "Deliverable", r: 32 },
+  { id:"user",     x:55,  y:122, r:32, label:"User Input",   sub:"PDF",        tooltip:null },
+  { id:"orch",     x:185, y:122, r:38, label:"Orchestrator", sub:"Agent",      tooltip:"Dynamic Routing, Context Extrapolation, & Contradiction Resolution." },
+  { id:"research", x:318, y:55,  r:27, label:"Research",     sub:"Agent",      tooltip:"Parses PDFs, computes depth score, and extrapolates context." },
+  { id:"content",  x:318, y:188, r:27, label:"Content",      sub:"Agent",      tooltip:"Generates interactive scenarios and ensures Pydantic JSON validation." },
+  { id:"spa",      x:452, y:122, r:27, label:"SPA Engine",   sub:"Vanilla JS", tooltip:"Infects Tailwind CSS & Vanilla JS for dynamic SPA player." },
+  { id:"out",      x:558, y:122, r:38, label:"",             sub:"",           tooltip:null },
 ];
-const synEdges = [["user","super"],["super","research"],["super","arch"],["super","ux"],["research","out"],["arch","out"],["ux","out"]];
+/* flow: user->orch->{research,content}->orch->spa[GATE]->out */
+const synSeq = [
+  { from:"user",     to:"orch",    gate:false },
+  { from:"orch",     to:"research",gate:false },
+  { from:"orch",     to:"content", gate:false },
+  { from:"research", to:"orch",    gate:false },
+  { from:"content",  to:"orch",    gate:false },
+  { from:"orch",     to:"spa",     gate:true, gateLabel:"Syllabus Approval" },
+  { from:"spa",      to:"out",     gate:false },
+];
+const gnSyn = id => synNodes.find(n => n.id === id);
+const SYN_CURVE = {
+  "user->orch":    -10,
+  "orch->research":-22,
+  "orch->content": +22,
+  "research->orch":+22,
+  "content->orch": -22,
+  "orch->spa":      -8,
+  "spa->out":       -8,
+};
+const synPath = (a, b) => {
+  const f = gnSyn(a), t = gnSyn(b);
+  const off = SYN_CURVE[`${a}->${b}`] ?? -12;
+  const cx = (f.x + t.x) / 2, cy = (f.y + t.y) / 2 + off;
+  return `M${f.x},${f.y} Q${cx},${cy} ${t.x},${t.y}`;
+};
+const STEP_MS = 1400;
+
 const SynapseGraph = () => {
-  const [active, setActive] = useState(null);
-  const [tick, setTick] = useState(0);
-  const running = useRef(true);
-  useEffect(() => { const iv = setInterval(() => { if (running.current) setTick(t => (t + 1) % synEdges.length); }, 800); return () => clearInterval(iv); }, []);
-  const gn = (id) => synNodes.find(n => n.id === id);
+  const [step, setStep]       = useState(0);
+  const [gates, setGates]     = useState({ 5: false });
+  const [hovered, setHovered] = useState(null);
+
+  useEffect(() => {
+    const e = synSeq[step];
+    if (e.gate && !gates[step]) return;
+    const t = setTimeout(() => setStep(s => {
+      const n = s + 1;
+      if (n >= synSeq.length) { setGates({ 5: false }); return 0; }
+      return n;
+    }), STEP_MS);
+    return () => clearTimeout(t);
+  }, [step, gates]);
+
+  const hNode   = hovered ? gnSyn(hovered) : null;
+  const thinkId = synSeq[step]?.to;
+
   return (
     <div className="node-graph">
-      <svg className="ng-svg" viewBox="0 0 620 260" preserveAspectRatio="xMidYMid meet">
-        <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--text)" opacity="0.5" /></marker></defs>
-        {synEdges.map(([a, b], i) => { const na = gn(a), nb = gn(b); const isActive = tick === i; return <path key={i} className={`flow-path${isActive ? " active" : ""}`} d={`M${na.x} ${na.y} Q${(na.x+nb.x)/2} ${(na.y+nb.y)/2-18} ${nb.x} ${nb.y}`} markerEnd="url(#arr2)" strokeDasharray={isActive ? "6 3" : "4 4"} style={isActive ? { strokeDashoffset: 24 } : {}} />; })}
-        {synNodes.map(n => (
-          <g key={n.id} style={{ cursor: "pointer" }} onClick={() => setActive(a => a === n.id ? null : n.id)}>
-            <circle cx={n.x} cy={n.y} r={n.r + 6} fill={active === n.id ? "rgba(100,100,100,0.15)" : "transparent"} />
-            <circle className="node-circle" cx={n.x} cy={n.y} r={n.r} />
-            <text className="node-text" x={n.x} y={n.y - 3}>{n.label}</text>
-            <text className="node-sub" x={n.x} y={n.y + 10}>{n.sub}</text>
-            <circle className="node-dot" cx={n.x + n.r - 5} cy={n.y - n.r + 5} r="4" style={{ animationDelay: `${synNodes.indexOf(n) * 0.3}s` }} />
-          </g>
-        ))}
+      <svg className="ng-svg" viewBox="0 0 614 248" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <marker id="arr-d" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+            <path d="M0,0 L0,5 L5,2.5 z" fill="rgba(255,255,255,0.15)" />
+          </marker>
+          <marker id="arr-a" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+            <path d="M0,0 L0,5 L5,2.5 z" fill="#06b6d4" />
+          </marker>
+          <filter id="pkt-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="4" result="g"/>
+            <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="nd-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="g"/>
+            <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="think-glow" x="-70%" y="-70%" width="240%" height="240%">
+            <feGaussianBlur stdDeviation="9" result="g"/>
+            <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        {/* Edges */}
+        {synSeq.map((e, i) => {
+          const past   = i < step || (i === step && gates[i]);
+          const active = i === step && !(e.gate && !gates[i]);
+          return <path key={i} d={synPath(e.from, e.to)}
+            className={`flow-path${past?" past":active?" active":""}`}
+            markerEnd={(past||active)?"url(#arr-a)":"url(#arr-d)"} />;
+        })}
+
+        {/* Data packet */}
+        {(() => {
+          const e = synSeq[step];
+          if (e.gate && !gates[step]) return null;
+          return (
+            <circle key={`pkt${step}`} r="5.5" fill="#06b6d4" filter="url(#pkt-glow)">
+              <animateMotion dur={`${STEP_MS}ms`} fill="freeze"
+                calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"
+                path={synPath(e.from, e.to)} />
+            </circle>
+          );
+        })()}
+
+        {/* HITL Gate */}
+        {synSeq.map((e, i) => {
+          if (!e.gate) return null;
+          const f = gnSyn(e.from), t = gnSyn(e.to);
+          const gx = (f.x + t.x) / 2, gy = (f.y + t.y) / 2 - 12;
+          const isHere  = i === step && !gates[i];
+          const approved = gates[i];
+          return (
+            <g key={`gate${i}`} style={{ cursor: isHere ? "pointer" : "default" }}
+               onClick={() => isHere && setGates(g => ({ ...g, [i]: true }))}>
+              <circle cx={gx} cy={gy} r={9}
+                fill={approved ? "rgba(16,185,129,0.12)" : isHere ? "rgba(250,204,21,0.14)" : "rgba(250,204,21,0.04)"}
+                stroke={approved ? "#10b981" : isHere ? "#facc15" : "rgba(250,204,21,0.25)"}
+                strokeWidth="1.5">
+                {isHere && <>
+                  <animate attributeName="r" values="8;14;8" dur="1.1s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="1;0.3;1" dur="1.1s" repeatCount="indefinite"/>
+                </>}
+              </circle>
+              <text x={gx} y={gy + 4} textAnchor="middle" fontSize="8" fontWeight="800"
+                fill={approved ? "#10b981" : isHere ? "#facc15" : "rgba(250,204,21,0.4)"}
+                fontFamily="Inter,sans-serif">
+                {approved ? "✓" : "G"}
+              </text>
+              {isHere && (
+                <text x={gx} y={gy + 22} textAnchor="middle" fontSize="6" fill="#facc15"
+                  fontFamily="Inter,sans-serif" letterSpacing="0.04em">
+                  {e.gateLabel} · click
+                </text>
+              )}
+            </g>
+          );
+        })}
+
+        {/* Nodes */}
+        {synNodes.map((n, ni) => {
+          const isHov   = hovered === n.id;
+          const isThink = thinkId === n.id;
+          const destIdx = synSeq.findIndex(e => e.to === n.id);
+          const lit     = n.id === "user" || step > destIdx;
+          return (
+            <g key={n.id}
+               onMouseEnter={() => setHovered(n.id)}
+               onMouseLeave={() => setHovered(null)}
+               style={{ cursor: n.tooltip ? "pointer" : "default" }}>
+              {isThink && (
+                <circle cx={n.x} cy={n.y} r={n.r + 14}
+                  fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.45)" strokeWidth="1.5"
+                  filter="url(#think-glow)">
+                  <animate attributeName="r" values={`${n.r+8};${n.r+18};${n.r+8}`} dur="0.9s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.9;0.2;0.9" dur="0.9s" repeatCount="indefinite"/>
+                </circle>
+              )}
+              {isHov && !isThink && (
+                <circle cx={n.x} cy={n.y} r={n.r + 12}
+                  fill="rgba(6,182,212,0.06)" stroke="rgba(6,182,212,0.22)"
+                  strokeWidth="1" filter="url(#nd-glow)" />
+              )}
+              <circle cx={n.x} cy={n.y} r={n.r}
+                fill="var(--bg3)"
+                stroke={isThink||isHov ? "#06b6d4" : lit ? "rgba(6,182,212,0.55)" : "var(--borderH)"}
+                strokeWidth={isThink||isHov ? 2.5 : lit ? 1.8 : 1.5} />
+              {n.id === "out" ? (
+                <>
+                  <text className="node-text" x={n.x} y={n.y - 9} style={{fontSize:"7px"}}>Interactive</text>
+                  <text className="node-text" x={n.x} y={n.y + 1} style={{fontSize:"7px"}}>Micro-Learning</text>
+                  <text className="node-sub"  x={n.x} y={n.y + 13}>Module</text>
+                </>
+              ) : (
+                <>
+                  <text className="node-text" x={n.x} y={n.y - 4}>{n.label}</text>
+                  <text className="node-sub"  x={n.x} y={n.y + 9}>{n.sub}</text>
+                </>
+              )}
+              <circle className="node-dot"
+                fill={isThink||isHov ? "#06b6d4" : "var(--text)"}
+                cx={n.x + n.r - 5} cy={n.y - n.r + 5} r="3.5"
+                style={{ animationDelay: `${ni * 0.25}s` }} />
+            </g>
+          );
+        })}
       </svg>
-      <p style={{ fontSize: "0.68rem", color: "var(--muted)", textAlign: "center" }}>Click a node to highlight · Watch the agent flow animate</p>
+
+      {/* Tooltip bar */}
+      <div className="syn-tooltip" style={{ opacity: hNode?.tooltip ? 1 : 0 }}>
+        {hNode?.tooltip
+          ? <><span className="syn-tt-title">{hNode.label} {hNode.sub}</span>— {hNode.tooltip}</>
+          : " "}
+      </div>
+
+      <p style={{ fontSize: "0.64rem", color: "var(--muted)", textAlign: "center", marginTop: "0.3rem" }}>
+        Click <span style={{ color:"#facc15", fontWeight:700 }}>gate</span> to approve handoff · Hover nodes for roles
+      </p>
     </div>
   );
 };
 
-/* 4. MushBot Safety Flow */
-const MushBotFlow = () => {
-  const steps = [
-    { icon: "📸", label: "Image Captured", sub: "ml5.js client-side filter" },
-    { icon: "🔒", label: "Privacy Check", sub: "No raw image leaves device" },
-    { icon: "👁️", label: "CV Identification", sub: "Kindwise API -species match" },
-    { icon: "🧠", label: "AI Safety Reasoning", sub: "GenAI logic layer -risk score" },
-    { icon: "✅", label: "Safety Response", sub: "Immediate audiovisual feedback" },
-  ];
-  return (
-    <div style={{ padding: "0.25rem 0" }}>
-      <div className="logic-flow">
-        {steps.map((s, i) => (
-          <div className="lf-step" key={i}>
-            <div className="lf-icon" style={{ background: "var(--bg3)", fontSize: "0.9rem" }}>{s.icon}</div>
-            <div><div style={{ fontWeight: 600, fontSize: "0.8rem" }}>{s.label}</div><div style={{ fontSize: "0.68rem", color: "var(--muted)" }}>{s.sub}</div></div>
-            {i < steps.length - 1 && <ChevronRight size={11} style={{ marginLeft: "auto", color: "var(--mutedL)" }} />}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 /* ─────────────────── LAPTOP FRAME ─────────────────── */
 const LaptopFrame = ({ src }) => (
@@ -1031,7 +1127,7 @@ const PROJECTS = [
       "Iterated in Figma with real reps to validate clarity and reduce cognitive load",
     ],
     outcome: "A modular, scalable Salesforce companion that reduces rep reporting friction and improves forecast data consistency.",
-    liveEl: <CognyteSl />,
+    liveEl: null,
     liveLabel: "Before / After -Salesforce Transformation",
     liveLinks: [
       { label: "Admin View", url: "https://command-deal-nexus.lovable.app/" },
@@ -1043,12 +1139,12 @@ const PROJECTS = [
     videoSections: [
       {
         label: "Sales Representative View",
-        desc: "A guided, friction-free interface that helps reps complete MEDDPICC fields through smart logic flows and AI-powered suggestions — reducing cognitive load and improving data quality.",
+        desc: "A guided, friction-free interface that helps reps complete MEDDPICC fields through smart logic flows and AI-powered suggestions - reducing cognitive load and improving data quality.",
         video: "/assets/BackUp.mp4",
       },
       {
         label: "Manager / Admin View",
-        desc: "A real-time dashboard giving managers full pipeline visibility, forecast analytics, and team performance tracking — turning Salesforce into a strategic command centre.",
+        desc: "A real-time dashboard giving managers full pipeline visibility, forecast analytics, and team performance tracking - turning Salesforce into a strategic command centre.",
         video: "/assets/backUpAdmin.mp4",
       },
     ],
@@ -1097,7 +1193,7 @@ const PROJECTS = [
       "Built strict error-handling protocols for low-confidence scores and poor lighting conditions",
     ],
     outcome: "A functional, privacy-preserving web app with a hybrid AI pipeline and safety guardrails woven into every step of the UX.",
-    liveEl: <MushBotFlow />,
+    liveEl: null,
     liveLabel: "Safety Pipeline",
     liveLinks: [{ label: "View Live Project", url: "https://mushbot.onrender.com/" }],
     coverImage: "/assets/mushbot-cover.png",
@@ -1333,19 +1429,19 @@ const HomePage = () => {
           <div style={{ transform: `translate(${parallax.x}px, ${parallax.y}px)`, transition: "transform 0.5s cubic-bezier(0.17,0.67,0.45,1)", willChange: "transform" }}>
             <div className="orbit-wrap">
               <div className="orbit-ring orbit-ring-1">
-                <OBadge label="JS"  bg="#F7DF1E" color="#2B2B2B"               pos={{ left:"81px",  top:"-19px" }} />
-                <OBadge label="Fg"  bg="#1E0533" color="#A259FF" fs="0.6rem"   pos={{ left:"168px", top:"131px" }} />
-                <OBadge label="Py"  bg="#1C3557" color="#F7D23E" fs="0.58rem"  pos={{ left:"-6px",  top:"131px" }} />
+                <OBadge label="JS"  bg="#F7DF1E" color="#2B2B2B"               pos={{ left:"40.5%", top:"-9.5%" }} />
+                <OBadge label="Fg"  bg="#1E0533" color="#A259FF" fs="0.6rem"   pos={{ left:"84%",   top:"65.5%" }} />
+                <OBadge label="Py"  bg="#1C3557" color="#F7D23E" fs="0.58rem"  pos={{ left:"-3%",   top:"65.5%" }} />
               </div>
               <div className="orbit-ring orbit-ring-2">
-                <OBadge label="Ps"  bg="#001E36" color="#31A8FF" fs="0.6rem"   pos={{ left:"242px", top:"51px"  }} />
-                <OBadge label="Ai"  bg="#300000" color="#FF9A00" fs="0.6rem"   pos={{ left:"121px", top:"261px" }} />
-                <OBadge label="C#"  bg="#512BD4" color="#ffffff"               pos={{ left:"0px",   top:"51px"  }} />
+                <OBadge label="Ps"  bg="#001E36" color="#31A8FF" fs="0.6rem"   pos={{ left:"86.4%", top:"18.2%" }} />
+                <OBadge label="Ai"  bg="#300000" color="#FF9A00" fs="0.6rem"   pos={{ left:"43.2%", top:"93.2%" }} />
+                <OBadge label="C#"  bg="#512BD4" color="#ffffff"               pos={{ left:"0%",    top:"18.2%" }} />
               </div>
               <div className="orbit-ring orbit-ring-3">
-                <OBadge label="Unity" bg="#1A1A1A" color="#ffffff" fs="0.5rem"  pos={{ left:"151px", top:"-19px"  }} />
-                <OBadge label="GPT"   bg="#10A37F" color="#ffffff" fs="0.54rem" pos={{ left:"298px", top:"236px"  }} />
-                <OBadge label="A360"  bg="#E8591A" color="#ffffff" fs="0.45rem" pos={{ left:"4px",   top:"236px"  }} />
+                <OBadge label="Unity" bg="#1A1A1A" color="#ffffff" fs="0.5rem"  pos={{ left:"44.4%", top:"-5.6%"  }} />
+                <OBadge label="GPT"   bg="#10A37F" color="#ffffff" fs="0.54rem" pos={{ left:"87.6%", top:"69.4%"  }} />
+                <OBadge label="A360"  bg="#E8591A" color="#ffffff" fs="0.45rem" pos={{ left:"1.2%",  top:"69.4%"  }} />
               </div>
               <div className="orbit-core" />
             </div>
@@ -1410,7 +1506,7 @@ const ProjectDetailPage = () => {
       {/* Header */}
       <div className="proj-hero">
         <FadeUp>
-          <button className="back-btn" onClick={() => navigate(-1)}>
+          <button className="back-btn" onClick={() => navigate({ pathname: "/", hash: "#projects" })}>
             <ArrowLeft size={14} /> Back
           </button>
         </FadeUp>
@@ -1419,7 +1515,7 @@ const ProjectDetailPage = () => {
           {p.wip && (
             <div className="wip-notice">
               <div className="wip-dot" style={{ width: 7, height: 7 }} />
-              Work in Progress — actively in development
+              Work in Progress - actively in development
             </div>
           )}
           <h1 className="proj-title">{p.title}</h1>
