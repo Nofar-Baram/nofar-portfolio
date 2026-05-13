@@ -1035,7 +1035,7 @@ const PROJECTS = [
     liveLabel: "Before / After -Salesforce Transformation",
     liveLinks: [
       { label: "Admin View", url: "https://command-deal-nexus.lovable.app/" },
-      { label: "Sales Rep View", url: "https://preview--cognyte-dealflow.lovable.app/" },
+      { label: "Sales Rep View", url: "https://cognyte-dealflow.lovable.app/" },
     ],
     coverImage: "/assets/cognyte-cover.png",
     mediaVideos: [],
@@ -1320,7 +1320,7 @@ const HomePage = () => {
           </FadeUp>
           <FadeUp delay={0.24}>
             <div className="hero-stats">
-              {[{ n: "10+", l: "Projects" }, { n: "2+", l: "Years @ Wolt" }, { n: "QA", l: "Game Testing" }, { n: "AI", l: "Native Designer" }].map(s => (
+              {[{ n: "10+", l: "Projects" }, { n: "B.A.", l: "Learning Tech" }, { n: "Code", l: "Frontend Skills" }, { n: "AI", l: "Native Designer" }].map(s => (
                 <div key={s.l}>
                   <div className="hstat-n"><CountUp value={s.n} /></div>
                   <div className="hstat-l">{s.l}</div>
