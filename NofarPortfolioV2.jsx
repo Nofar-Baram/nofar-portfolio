@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, createContext, useContext } f
 import {
   Sun, Moon, ChevronRight, X, ArrowLeft, Sparkles,
   Layers, Brain, Coffee, Shield, PenTool, Code2,
-  Gamepad2, Mail, ExternalLink, Zap, Database,
+  Gamepad2, Mail, ExternalLink, Zap, Database, Download,
   Cpu as CpuIcon, Ghost, Wind, BookOpen
 } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useParams, useNavigate, NavLink } from "react-router-dom";
@@ -150,10 +150,10 @@ const G = () => (
     }
     .nav-logo {
       text-decoration: none; display: flex; align-items: center;
-      position: relative; height: 64px;
+      position: relative; height: 80px;
     }
     .nav-logo img {
-      height: 64px; width: auto; object-fit: contain; display: block;
+      height: 80px; width: auto; object-fit: contain; display: block;
       position: absolute; top: 0; left: 0;
     }
     .nav-links { display: flex; align-items: center; gap: 0.1rem; }
@@ -213,8 +213,8 @@ const G = () => (
       background-clip: text;
     }
     .hero-h1 .sub-line {
-      display: block; font-size: 0.38em; font-weight: 500;
-      letter-spacing: 0.06em; text-transform: uppercase;
+      display: block; font-size: 0.47em; font-weight: 500;
+      letter-spacing: 0.01em;
       color: var(--muted); margin-top: 0.8em;
     }
     .hero-body {
@@ -280,7 +280,7 @@ const G = () => (
       50%       { transform: translate(-50%,-50%) scale(1.7); box-shadow: 0 0 28px 10px rgba(6,182,212,0.6), 0 0 70px 30px rgba(167,139,250,0.2); }
     }
     .orbit-wrap {
-      position: relative; width: 380px; height: 380px; flex-shrink: 0;
+      position: relative; width: 340px; height: 340px; flex-shrink: 0;
     }
     .orbit-wrap::before {
       content: ''; position: absolute; inset: -40px; border-radius: 50%;
@@ -291,7 +291,7 @@ const G = () => (
     .orbit-center {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%,-50%);
-      width: 33.68%; height: 33.68%; border-radius: 50%;
+      width: 128px; height: 128px; border-radius: 50%;
       overflow: hidden; border: 1.5px solid var(--borderH);
       box-shadow: var(--shadowH), 0 0 0 6px rgba(99,102,241,0.08); z-index: 4;
     }
@@ -300,19 +300,19 @@ const G = () => (
       border-radius: 50%;
     }
     .orbit-ring-1 {
-      width: 52.63%; height: 52.63%; margin: -26.32% 0 0 -26.32%;
+      width: 200px; height: 200px; margin: -100px 0 0 -100px;
       border: 1px solid rgba(6,182,212,0.38);
       box-shadow: 0 0 22px rgba(6,182,212,0.12), inset 0 0 18px rgba(6,182,212,0.06);
       animation: orbit-cw 11s linear infinite;
     }
     .orbit-ring-2 {
-      width: 73.68%; height: 73.68%; margin: -36.84% 0 0 -36.84%;
+      width: 280px; height: 280px; margin: -140px 0 0 -140px;
       border: 1px dashed rgba(167,139,250,0.32);
       box-shadow: 0 0 18px rgba(167,139,250,0.1);
       animation: orbit-ccw 18s linear infinite;
     }
     .orbit-ring-3 {
-      width: 89.47%; height: 89.47%; margin: -44.74% 0 0 -44.74%;
+      width: 340px; height: 340px; margin: -170px 0 0 -170px;
       border: 1px solid rgba(6,182,212,0.16);
       box-shadow: 0 0 24px rgba(6,182,212,0.07);
       animation: orbit-cw 28s linear infinite;
@@ -327,6 +327,12 @@ const G = () => (
     .orbit-ring-1 .orbit-dot { animation: orbit-ccw 11s linear infinite; }
     .orbit-ring-2 .orbit-dot { animation: orbit-cw  18s linear infinite; }
     .orbit-ring-3 .orbit-dot { animation: orbit-ccw 28s linear infinite; }
+    .orbit-wrap:hover .orbit-ring-1,
+    .orbit-wrap:hover .orbit-ring-1 .orbit-dot { animation-duration: 44s; }
+    .orbit-wrap:hover .orbit-ring-2,
+    .orbit-wrap:hover .orbit-ring-2 .orbit-dot { animation-duration: 72s; }
+    .orbit-wrap:hover .orbit-ring-3,
+    .orbit-wrap:hover .orbit-ring-3 .orbit-dot { animation-duration: 112s; }
     .orbit-core {
       position: absolute; top: 50%; left: 50%;
       width: 10px; height: 10px; border-radius: 50%;
@@ -568,45 +574,20 @@ const G = () => (
       font-size: 0.7rem; color: var(--mutedL);
     }
 
-    /* ── iPhone 15/16 Pro Mockup Frame ── */
+    /* ── iPhone PNG Frame Mockup ── */
     .iphone-wrap { display: flex; justify-content: center; padding: 1.5rem 1rem 0.5rem; }
-    .iphone-outer {
-      position: relative; width: 216px;
-      background: linear-gradient(155deg, #3a3a3c 0%, #1c1c1e 40%, #111113 100%);
-      border-radius: 46px; padding: 8px;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.18),
-        0 0 0 2.5px #0a0a0b,
-        0 0 0 4px rgba(255,255,255,0.06),
-        0 50px 120px rgba(0,0,0,0.8),
-        0 20px 40px rgba(0,0,0,0.5),
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        inset 0 -1px 0 rgba(0,0,0,0.4);
+    .iphone-frame {
+      position: relative; width: 420px; display: inline-block; overflow: hidden; aspect-ratio: 9/19.5;
     }
-    .iphone-island {
-      width: 80px; height: 24px;
-      background: #050505; border-radius: 100px;
-      margin: 0 auto 8px;
-      box-shadow: inset 0 1px 4px rgba(0,0,0,1), 0 0 0 0.5px rgba(255,255,255,0.06);
+    .iphone-frame-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: contain; pointer-events: none; z-index: 2;
     }
-    .iphone-screen {
-      position: relative; border-radius: 38px; overflow: hidden;
-      aspect-ratio: 9/19.5; background: #000;
+    .iphone-frame video {
+      position: absolute; z-index: 1;
+      top: 2%; left: 6%; width: 88%; height: 96%;
+      object-fit: cover; background: transparent; display: block;
     }
-    .iphone-screen video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-    .iphone-side-btn {
-      position: absolute; right: -2.5px; top: 108px;
-      width: 2.5px; height: 32px;
-      background: linear-gradient(180deg, #3a3a3c, #2c2c2e);
-      border-radius: 0 2px 2px 0;
-    }
-    .iphone-side-vol {
-      position: absolute; left: -2.5px; top: 88px;
-      width: 2.5px; height: 28px;
-      background: linear-gradient(180deg, #3a3a3c, #2c2c2e);
-      border-radius: 2px 0 0 2px;
-    }
-    .iphone-side-vol2 { top: 126px; }
 
     /* ── Bento Device Stages ── */
     .bcard-device-stage {
@@ -652,40 +633,6 @@ const G = () => (
       border-radius: 0 0 4px 4px; margin: 0 auto;
     }
 
-    /* ── iPhone Mockup (bento grid) ── */
-    .mock-phone-mini {
-      width: 48%; position: relative;
-      background: linear-gradient(175deg, #2e2e30 0%, #1a1a1c 100%);
-      border-radius: 42px; padding: 8px;
-      box-shadow:
-        0 0 0 2px rgba(255,255,255,0.13),
-        0 0 0 4.5px rgba(0,0,0,0.9),
-        0 30px 70px rgba(0,0,0,0.85);
-      transform: translateY(-18px);
-    }
-    .mock-phone-mini-side-btn {
-      position: absolute; right: -4px; top: 90px;
-      width: 4px; height: 38px; background: #2e2e30;
-      border-radius: 0 2px 2px 0;
-    }
-    .mock-phone-mini-vol {
-      position: absolute; left: -4px; top: 80px;
-      width: 4px; height: 28px; background: #2e2e30;
-      border-radius: 2px 0 0 2px;
-    }
-    .mock-phone-mini-vol2 { top: 118px; }
-    .mock-phone-mini-island {
-      width: 52px; height: 12px; background: #090909;
-      border-radius: 100px; margin: 0 auto 5px;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.95);
-    }
-    .mock-phone-mini-screen {
-      position: relative; border-radius: 32px; overflow: hidden;
-      aspect-ratio: 9/19.5; background: #000;
-    }
-    .mock-phone-mini-screen img {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
-    }
 
     /* ── Game Console Mockup (bento grid - Get The Ghost) ── */
     .mock-console-mini {
@@ -751,24 +698,16 @@ const G = () => (
     .ba-label      { position: absolute; bottom: 0.75rem; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(0,0,0,0.4); color: #fff; padding: 0.18rem 0.55rem; border-radius: 100px; }
 
     /* ── Live: Node Graph ── */
-    .node-graph { width: 100%; padding: 0.4rem 0; }
-    .ng-svg { width: 100%; height: 265px; }
-    .node-text { font-family: 'Inter',sans-serif; font-size: 9px; fill: var(--text); text-anchor: middle; font-weight: 600; }
-    .node-sub  { font-family: 'Inter',sans-serif; font-size: 7px; fill: var(--muted); text-anchor: middle; }
+    .node-graph { width: 100%; padding: 0.5rem 0; }
+    .ng-svg { width: 100%; height: 240px; }
+    .node-circle { fill: var(--bg3); stroke: var(--borderH); stroke-width: 1.5; }
+    .node-text { font-family: 'Inter', sans-serif; font-size: 9px; fill: var(--text); text-anchor: middle; font-weight: 600; }
+    .node-sub  { font-family: 'Inter', sans-serif; font-size: 7px; fill: var(--muted); text-anchor: middle; }
     @keyframes dash { to { stroke-dashoffset: 0; } }
+    .flow-path { stroke: var(--text); stroke-width: 1.5; fill: none; stroke-dasharray: 6 3; opacity: 0.25; }
+    .flow-path.active { opacity: 0.9; animation: dash 1.2s linear infinite; }
     @keyframes nodeFlow { 0%,100% { opacity:0.3; } 50% { opacity:1; } }
-    .flow-path        { stroke: rgba(255,255,255,0.14); stroke-width:1.5; fill:none; stroke-dasharray:5 4; }
-    .flow-path.past   { stroke:#06b6d4; opacity:0.6; stroke-width:1.5; stroke-dasharray:5 4; }
-    .flow-path.active { stroke:#06b6d4; opacity:1;   stroke-width:2;   stroke-dasharray:5 4; animation:dash 1.4s linear infinite; }
-    .node-dot { animation: nodeFlow 1.8s ease-in-out infinite; }
-    .syn-tooltip {
-      min-height: 38px; margin: 0.45rem 0 0; padding: 0.5rem 0.9rem;
-      background: rgba(8,13,26,0.88); border: 1px solid rgba(6,182,212,0.25);
-      border-radius: 10px; backdrop-filter: blur(14px);
-      font-size: 0.65rem; color: var(--muted); line-height: 1.55;
-      transition: opacity 0.18s;
-    }
-    .syn-tt-title { font-weight: 700; color: var(--text); margin-right: 0.3rem; }
+    .node-dot { fill: var(--text); animation: nodeFlow 1.8s ease-in-out infinite; }
 
     /* ── Live: Safety Flow ── */
     .logic-flow { display: flex; flex-direction: column; gap: 0.55rem; }
@@ -797,7 +736,7 @@ const G = () => (
       border-radius: 7px; overflow: hidden;
     }
     .laptop-frame-screen video {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; display: block;
     }
     .laptop-frame-base {
       width: 114%; height: 16px;
@@ -845,8 +784,11 @@ const G = () => (
     /* ── Responsive ── */
     @media (max-width: 820px) {
       .hero { flex-direction: column; padding: 3rem 1.25rem; }
-      .orbit-wrap { width: min(320px, 82vw); height: min(320px, 82vw); align-self: center; }
-      .orbit-dot  { width: 30px; height: 30px; border-radius: 8px; }
+      .orbit-wrap { width: 240px; height: 240px; align-self: center; }
+      .orbit-ring-1 { width: 140px; height: 140px; margin: -70px 0 0 -70px; }
+      .orbit-ring-2 { width: 200px; height: 200px; margin: -100px 0 0 -100px; }
+      .orbit-ring-3 { width: 240px; height: 240px; margin: -120px 0 0 -120px; }
+      .orbit-center { width: 90px; height: 90px; }
       .bento { grid-template-columns: 1fr; }
       .bcard-feat { grid-column: span 1; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -862,217 +804,121 @@ const G = () => (
 /* 1. Ninja -Video in iPhone Frame */
 const NinjaPhone = () => (
   <div className="iphone-wrap">
-    <div className="iphone-outer">
-      <div className="iphone-side-btn" />
-      <div className="iphone-side-vol" />
-      <div className="iphone-side-vol iphone-side-vol2" />
-      <div className="iphone-island" />
-      <div className="iphone-screen">
-        <video src="/assets/Ninja.mp4" autoPlay loop muted playsInline />
-      </div>
+    <div className="iphone-frame">
+      <img className="iphone-frame-img" src="/assets/iphone-frame.png" alt="" />
+      <video src="/assets/Ninja.mp4" autoPlay loop muted playsInline controls />
     </div>
   </div>
 );
 
-/* 3. Synapse Pipeline */
-const synNodes = [
-  { id:"user",     x:55,  y:122, r:32, label:"User Input",   sub:"PDF",        tooltip:null },
-  { id:"orch",     x:185, y:122, r:38, label:"Orchestrator", sub:"Agent",      tooltip:"Dynamic Routing, Context Extrapolation, & Contradiction Resolution." },
-  { id:"research", x:318, y:55,  r:27, label:"Research",     sub:"Agent",      tooltip:"Parses PDFs, computes depth score, and extrapolates context." },
-  { id:"content",  x:318, y:188, r:27, label:"Content",      sub:"Agent",      tooltip:"Generates interactive scenarios and ensures Pydantic JSON validation." },
-  { id:"spa",      x:452, y:122, r:27, label:"SPA Engine",   sub:"Vanilla JS", tooltip:"Infects Tailwind CSS & Vanilla JS for dynamic SPA player." },
-  { id:"out",      x:558, y:122, r:38, label:"",             sub:"",           tooltip:null },
-];
-/* flow: user->orch->{research,content}->orch->spa[GATE]->out */
-const synSeq = [
-  { from:"user",     to:"orch",    gate:false },
-  { from:"orch",     to:"research",gate:false },
-  { from:"orch",     to:"content", gate:false },
-  { from:"research", to:"orch",    gate:false },
-  { from:"content",  to:"orch",    gate:false },
-  { from:"orch",     to:"spa",     gate:true, gateLabel:"Syllabus Approval" },
-  { from:"spa",      to:"out",     gate:false },
-];
-const gnSyn = id => synNodes.find(n => n.id === id);
-const SYN_CURVE = {
-  "user->orch":    -10,
-  "orch->research":-22,
-  "orch->content": +22,
-  "research->orch":+22,
-  "content->orch": -22,
-  "orch->spa":      -8,
-  "spa->out":       -8,
-};
-const synPath = (a, b) => {
-  const f = gnSyn(a), t = gnSyn(b);
-  const off = SYN_CURVE[`${a}->${b}`] ?? -12;
-  const cx = (f.x + t.x) / 2, cy = (f.y + t.y) / 2 + off;
-  return `M${f.x},${f.y} Q${cx},${cy} ${t.x},${t.y}`;
-};
-const STEP_MS = 1400;
-
-const SynapseGraph = () => {
-  const [step, setStep]       = useState(0);
-  const [gates, setGates]     = useState({ 5: false });
-  const [hovered, setHovered] = useState(null);
-
+/* 2. Before/After Slider */
+const CognyteSl = () => {
+  const [pos, setPos] = useState(50);
+  const ref = useRef(null);
+  const dragging = useRef(false);
+  const move = useCallback((clientX) => {
+    if (!ref.current || !dragging.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    setPos(Math.min(Math.max(((clientX - rect.left) / rect.width) * 100, 4), 96));
+  }, []);
   useEffect(() => {
-    const e = synSeq[step];
-    if (e.gate && !gates[step]) return;
-    const t = setTimeout(() => setStep(s => {
-      const n = s + 1;
-      if (n >= synSeq.length) { setGates({ 5: false }); return 0; }
-      return n;
-    }), STEP_MS);
-    return () => clearTimeout(t);
-  }, [step, gates]);
-
-  const hNode   = hovered ? gnSyn(hovered) : null;
-  const thinkId = synSeq[step]?.to;
-
+    const up = () => { dragging.current = false; };
+    const mm = (e) => move(e.touches ? e.touches[0].clientX : e.clientX);
+    window.addEventListener("mouseup", up); window.addEventListener("mousemove", mm);
+    window.addEventListener("touchend", up); window.addEventListener("touchmove", mm);
+    return () => { window.removeEventListener("mouseup", up); window.removeEventListener("mousemove", mm); window.removeEventListener("touchend", up); window.removeEventListener("touchmove", mm); };
+  }, [move]);
   return (
-    <div className="node-graph">
-      <svg className="ng-svg" viewBox="0 0 614 248" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <marker id="arr-d" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
-            <path d="M0,0 L0,5 L5,2.5 z" fill="rgba(255,255,255,0.15)" />
-          </marker>
-          <marker id="arr-a" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
-            <path d="M0,0 L0,5 L5,2.5 z" fill="#06b6d4" />
-          </marker>
-          <filter id="pkt-glow" x="-80%" y="-80%" width="260%" height="260%">
-            <feGaussianBlur stdDeviation="4" result="g"/>
-            <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="nd-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="5" result="g"/>
-            <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="think-glow" x="-70%" y="-70%" width="240%" height="240%">
-            <feGaussianBlur stdDeviation="9" result="g"/>
-            <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-
-        {/* Edges */}
-        {synSeq.map((e, i) => {
-          const past   = i < step || (i === step && gates[i]);
-          const active = i === step && !(e.gate && !gates[i]);
-          return <path key={i} d={synPath(e.from, e.to)}
-            className={`flow-path${past?" past":active?" active":""}`}
-            markerEnd={(past||active)?"url(#arr-a)":"url(#arr-d)"} />;
-        })}
-
-        {/* Data packet */}
-        {(() => {
-          const e = synSeq[step];
-          if (e.gate && !gates[step]) return null;
-          return (
-            <circle key={`pkt${step}`} r="5.5" fill="#06b6d4" filter="url(#pkt-glow)">
-              <animateMotion dur={`${STEP_MS}ms`} fill="freeze"
-                calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"
-                path={synPath(e.from, e.to)} />
-            </circle>
-          );
-        })()}
-
-        {/* HITL Gate */}
-        {synSeq.map((e, i) => {
-          if (!e.gate) return null;
-          const f = gnSyn(e.from), t = gnSyn(e.to);
-          const gx = (f.x + t.x) / 2, gy = (f.y + t.y) / 2 - 12;
-          const isHere  = i === step && !gates[i];
-          const approved = gates[i];
-          return (
-            <g key={`gate${i}`} style={{ cursor: isHere ? "pointer" : "default" }}
-               onClick={() => isHere && setGates(g => ({ ...g, [i]: true }))}>
-              <circle cx={gx} cy={gy} r={9}
-                fill={approved ? "rgba(16,185,129,0.12)" : isHere ? "rgba(250,204,21,0.14)" : "rgba(250,204,21,0.04)"}
-                stroke={approved ? "#10b981" : isHere ? "#facc15" : "rgba(250,204,21,0.25)"}
-                strokeWidth="1.5">
-                {isHere && <>
-                  <animate attributeName="r" values="8;14;8" dur="1.1s" repeatCount="indefinite"/>
-                  <animate attributeName="opacity" values="1;0.3;1" dur="1.1s" repeatCount="indefinite"/>
-                </>}
-              </circle>
-              <text x={gx} y={gy + 4} textAnchor="middle" fontSize="8" fontWeight="800"
-                fill={approved ? "#10b981" : isHere ? "#facc15" : "rgba(250,204,21,0.4)"}
-                fontFamily="Inter,sans-serif">
-                {approved ? "✓" : "G"}
-              </text>
-              {isHere && (
-                <text x={gx} y={gy + 22} textAnchor="middle" fontSize="6" fill="#facc15"
-                  fontFamily="Inter,sans-serif" letterSpacing="0.04em">
-                  {e.gateLabel} · click
-                </text>
-              )}
-            </g>
-          );
-        })}
-
-        {/* Nodes */}
-        {synNodes.map((n, ni) => {
-          const isHov   = hovered === n.id;
-          const isThink = thinkId === n.id;
-          const destIdx = synSeq.findIndex(e => e.to === n.id);
-          const lit     = n.id === "user" || step > destIdx;
-          return (
-            <g key={n.id}
-               onMouseEnter={() => setHovered(n.id)}
-               onMouseLeave={() => setHovered(null)}
-               style={{ cursor: n.tooltip ? "pointer" : "default" }}>
-              {isThink && (
-                <circle cx={n.x} cy={n.y} r={n.r + 14}
-                  fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.45)" strokeWidth="1.5"
-                  filter="url(#think-glow)">
-                  <animate attributeName="r" values={`${n.r+8};${n.r+18};${n.r+8}`} dur="0.9s" repeatCount="indefinite"/>
-                  <animate attributeName="opacity" values="0.9;0.2;0.9" dur="0.9s" repeatCount="indefinite"/>
-                </circle>
-              )}
-              {isHov && !isThink && (
-                <circle cx={n.x} cy={n.y} r={n.r + 12}
-                  fill="rgba(6,182,212,0.06)" stroke="rgba(6,182,212,0.22)"
-                  strokeWidth="1" filter="url(#nd-glow)" />
-              )}
-              <circle cx={n.x} cy={n.y} r={n.r}
-                fill="var(--bg3)"
-                stroke={isThink||isHov ? "#06b6d4" : lit ? "rgba(6,182,212,0.55)" : "var(--borderH)"}
-                strokeWidth={isThink||isHov ? 2.5 : lit ? 1.8 : 1.5} />
-              {n.id === "out" ? (
-                <>
-                  <text className="node-text" x={n.x} y={n.y - 9} style={{fontSize:"7px"}}>Interactive</text>
-                  <text className="node-text" x={n.x} y={n.y + 1} style={{fontSize:"7px"}}>Micro-Learning</text>
-                  <text className="node-sub"  x={n.x} y={n.y + 13}>Module</text>
-                </>
-              ) : (
-                <>
-                  <text className="node-text" x={n.x} y={n.y - 4}>{n.label}</text>
-                  <text className="node-sub"  x={n.x} y={n.y + 9}>{n.sub}</text>
-                </>
-              )}
-              <circle className="node-dot"
-                fill={isThink||isHov ? "#06b6d4" : "var(--text)"}
-                cx={n.x + n.r - 5} cy={n.y - n.r + 5} r="3.5"
-                style={{ animationDelay: `${ni * 0.25}s` }} />
-            </g>
-          );
-        })}
-      </svg>
-
-      {/* Tooltip bar */}
-      <div className="syn-tooltip" style={{ opacity: hNode?.tooltip ? 1 : 0 }}>
-        {hNode?.tooltip
-          ? <><span className="syn-tt-title">{hNode.label} {hNode.sub}</span>— {hNode.tooltip}</>
-          : " "}
+    <div>
+      <div ref={ref} className="slider-wrap" onMouseDown={e => { dragging.current = true; move(e.clientX); }} onTouchStart={e => { dragging.current = true; move(e.touches[0].clientX); }}>
+        <div className="slider-before">
+          <div style={{ fontSize: "0.58rem", color: "#888", letterSpacing: "0.12em", marginBottom: "0.6rem" }}>BEFORE -Manual Salesforce</div>
+          {["Deal Stage: ???", "MEDDPICC: Incomplete", "Close Date: TBD", "Notes: (empty)"].map((t, i) => (
+            <div key={i} style={{ background: "rgba(255,255,255,0.75)", borderRadius: "8px", padding: "0.4rem 0.7rem", marginBottom: "0.35rem", fontSize: "0.72rem", color: "#555", display: "flex", alignItems: "center", gap: "0.45rem" }}>
+              <div style={{ width: "5px", height: "5px", borderRadius: "50%", background: i < 2 ? "#f87171" : "#fb923c" }} />{t}
+            </div>
+          ))}
+          <div className="ba-label" style={{ left: "0.65rem" }}>BEFORE</div>
+        </div>
+        <div className="slider-clip" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
+          <div className="slider-after">
+            <div style={{ fontSize: "0.58rem", color: "#aaa", letterSpacing: "0.12em", marginBottom: "0.6rem" }}>AFTER -Back-Up Companion</div>
+            {["Deal Stage: Validation ✓", "MEDDPICC: 94% complete", "Close Date: Q3 2025 ✓", "AI Copilot: Active 🤖"].map((t, i) => (
+              <div key={i} style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", padding: "0.4rem 0.7rem", marginBottom: "0.35rem", fontSize: "0.72rem", color: "#eee", display: "flex", alignItems: "center", gap: "0.45rem" }}>
+                <div style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#4ade80" }} />{t}
+              </div>
+            ))}
+            <div className="ba-label" style={{ right: "0.65rem" }}>AFTER</div>
+          </div>
+        </div>
+        <div className="slider-handle" style={{ left: `${pos}%` }}>
+          <div className="slider-knob"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 4L2 8L5 12M11 4L14 8L11 12" stroke="#888" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+        </div>
       </div>
-
-      <p style={{ fontSize: "0.64rem", color: "var(--muted)", textAlign: "center", marginTop: "0.3rem" }}>
-        Click <span style={{ color:"#facc15", fontWeight:700 }}>gate</span> to approve handoff · Hover nodes for roles
-      </p>
+      <p style={{ fontSize: "0.7rem", color: "var(--muted)", textAlign: "center", marginTop: "0.65rem" }}>← Drag to compare</p>
     </div>
   );
 };
 
+/* 3. Synapse Node Graph */
+const synNodes = [
+  { id: "user", x: 70, y: 130, label: "Designer", sub: "Input", r: 30 },
+  { id: "super", x: 230, y: 130, label: "Super", sub: "Agent", r: 36 },
+  { id: "research", x: 390, y: 60, label: "Research", sub: "Agent", r: 28 },
+  { id: "arch", x: 390, y: 130, label: "Architect", sub: "Agent", r: 28 },
+  { id: "ux", x: 390, y: 200, label: "UX Flow", sub: "Agent", r: 28 },
+  { id: "out", x: 530, y: 130, label: "Output", sub: "Deliverable", r: 32 },
+];
+const synEdges = [["user","super"],["super","research"],["super","arch"],["super","ux"],["research","out"],["arch","out"],["ux","out"]];
+const SynapseGraph = () => {
+  const [active, setActive] = useState(null);
+  const [tick, setTick] = useState(0);
+  const running = useRef(true);
+  useEffect(() => { const iv = setInterval(() => { if (running.current) setTick(t => (t + 1) % synEdges.length); }, 800); return () => clearInterval(iv); }, []);
+  const gn = (id) => synNodes.find(n => n.id === id);
+  return (
+    <div className="node-graph">
+      <svg className="ng-svg" viewBox="0 0 620 260" preserveAspectRatio="xMidYMid meet">
+        <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="var(--text)" opacity="0.5" /></marker></defs>
+        {synEdges.map(([a, b], i) => { const na = gn(a), nb = gn(b); const isActive = tick === i; return <path key={i} className={`flow-path${isActive ? " active" : ""}`} d={`M${na.x} ${na.y} Q${(na.x+nb.x)/2} ${(na.y+nb.y)/2-18} ${nb.x} ${nb.y}`} markerEnd="url(#arr2)" strokeDasharray={isActive ? "6 3" : "4 4"} style={isActive ? { strokeDashoffset: 24 } : {}} />; })}
+        {synNodes.map(n => (
+          <g key={n.id} style={{ cursor: "pointer" }} onClick={() => setActive(a => a === n.id ? null : n.id)}>
+            <circle cx={n.x} cy={n.y} r={n.r + 6} fill={active === n.id ? "rgba(100,100,100,0.15)" : "transparent"} />
+            <circle className="node-circle" cx={n.x} cy={n.y} r={n.r} />
+            <text className="node-text" x={n.x} y={n.y - 3}>{n.label}</text>
+            <text className="node-sub" x={n.x} y={n.y + 10}>{n.sub}</text>
+            <circle className="node-dot" cx={n.x + n.r - 5} cy={n.y - n.r + 5} r="4" style={{ animationDelay: `${synNodes.indexOf(n) * 0.3}s` }} />
+          </g>
+        ))}
+      </svg>
+      <p style={{ fontSize: "0.68rem", color: "var(--muted)", textAlign: "center" }}>Click a node to highlight · Watch the agent flow animate</p>
+    </div>
+  );
+};
+
+/* 4. MushBot Safety Flow */
+const MushBotFlow = () => {
+  const steps = [
+    { icon: "📸", label: "Image Captured", sub: "ml5.js client-side filter" },
+    { icon: "🔒", label: "Privacy Check", sub: "No raw image leaves device" },
+    { icon: "👁️", label: "CV Identification", sub: "Kindwise API -species match" },
+    { icon: "🧠", label: "AI Safety Reasoning", sub: "GenAI logic layer -risk score" },
+    { icon: "✅", label: "Safety Response", sub: "Immediate audiovisual feedback" },
+  ];
+  return (
+    <div style={{ padding: "0.25rem 0" }}>
+      <div className="logic-flow">
+        {steps.map((s, i) => (
+          <div className="lf-step" key={i}>
+            <div className="lf-icon" style={{ background: "var(--bg3)", fontSize: "0.9rem" }}>{s.icon}</div>
+            <div><div style={{ fontWeight: 600, fontSize: "0.8rem" }}>{s.label}</div><div style={{ fontSize: "0.68rem", color: "var(--muted)" }}>{s.sub}</div></div>
+            {i < steps.length - 1 && <ChevronRight size={11} style={{ marginLeft: "auto", color: "var(--mutedL)" }} />}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 /* ─────────────────── LAPTOP FRAME ─────────────────── */
 const LaptopFrame = ({ src }) => (
@@ -1081,7 +927,7 @@ const LaptopFrame = ({ src }) => (
       <div className="laptop-frame-lid">
         <div className="laptop-frame-cam" />
         <div className="laptop-frame-screen">
-          <video src={src} autoPlay loop muted playsInline />
+          <video src={src} autoPlay loop muted playsInline controls />
         </div>
       </div>
       <div className="laptop-frame-base">
@@ -1127,7 +973,7 @@ const PROJECTS = [
       "Iterated in Figma with real reps to validate clarity and reduce cognitive load",
     ],
     outcome: "A modular, scalable Salesforce companion that reduces rep reporting friction and improves forecast data consistency.",
-    liveEl: null,
+    liveEl: <CognyteSl />,
     liveLabel: "Before / After -Salesforce Transformation",
     liveLinks: [
       { label: "Admin View", url: "https://command-deal-nexus.lovable.app/" },
@@ -1139,12 +985,12 @@ const PROJECTS = [
     videoSections: [
       {
         label: "Sales Representative View",
-        desc: "A guided, friction-free interface that helps reps complete MEDDPICC fields through smart logic flows and AI-powered suggestions - reducing cognitive load and improving data quality.",
+        desc: "A guided, friction-free interface that helps reps complete MEDDPICC fields through smart logic flows and AI-powered suggestions — reducing cognitive load and improving data quality.",
         video: "/assets/BackUp.mp4",
       },
       {
         label: "Manager / Admin View",
-        desc: "A real-time dashboard giving managers full pipeline visibility, forecast analytics, and team performance tracking - turning Salesforce into a strategic command centre.",
+        desc: "A real-time dashboard giving managers full pipeline visibility, forecast analytics, and team performance tracking — turning Salesforce into a strategic command centre.",
         video: "/assets/backUpAdmin.mp4",
       },
     ],
@@ -1153,7 +999,7 @@ const PROJECTS = [
     id: 2,
     icon: <Brain size={17} />,
     tags: [{ l: "LLM Agents" }, { l: "Capstone" }, { l: "AI Architecture" }],
-    title: "Synapse",
+    title: "Synapse AI Platform",
     tagline: "Automating the instructional design workflow with a Multi-Agent ecosystem.",
     role: "UX Designer + AI Architect",
     tools: ["Figma", "LLMs", "Articulate 360 (Research)", "Docebo (Research)"],
@@ -1177,6 +1023,32 @@ const PROJECTS = [
   },
   {
     id: 3,
+    icon: <Coffee size={17} />,
+    tags: [{ l: "Figma Prototyping" }, { l: "UX Writing" }, { l: "Interactive" }],
+    title: "Ninja Coffee Guide",
+    tagline: "A digital ritual: Transforming a physical manual into an interactive experience.",
+    role: "UX Designer + Figma Prototyper",
+    tools: ["Figma", "Advanced Prototyping", "UX Writing"],
+    problem: "Physical product manuals are dense and linear, ignoring how users actually interact with appliances. The Ninja machine's manual failed to guide new users through setup in a calm, intuitive way.",
+    solution: "An interactive digital guide built in Figma that simulates the machine's physical interface. Users step through each stage with contextual visuals and UX copy written for calm and confidence.",
+    process: [
+      "Audited the original Ninja manual for clarity gaps and user anxiety trigger points",
+      "Mapped the full machine interaction model -buttons, modes, brew sequences -as a UX flow",
+      "Designed interactive screen states in Figma, mirroring the machine's physical display accurately",
+      "Wrote UX copy for each step: clear, warm, and completely jargon-free",
+      "Used Figma advanced prototyping (overlays, conditionals, scroll triggers) for a native-app feel",
+    ],
+    outcome: "A polished high-fidelity Figma prototype demonstrating how UX writing and interaction design transform a mundane appliance manual into a delightful product experience.",
+    liveEl: null,
+    liveLabel: null,
+    liveLinks: [{ label: "View Figma Prototype", url: "https://www.figma.com/proto/8PpWjHqQ4Eio9eZqSl1GIn/%D7%A0%D7%99%D7%A0%D7%92%D7%B3%D7%94-%D7%90%D7%A4%D7%99%D7%95%D7%9F-%D7%91%D7%9E%D7%95%D7%91%D7%99%D7%9C?page-id=46%3A2&node-id=555-203&viewport=1398%2C-599%2C0.14&t=ugECNsdmIFAJ9oKc-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=555%3A142&show-proto-sidebar=1" }],
+    phoneFrame: true,
+    coverImage: "/assets/Ninja-cover.png",
+    mediaVideos: ["/assets/Ninja.mp4"],
+    mediaImages: ["/assets/ninja.png"],
+  },
+  {
+    id: 4,
     icon: <Layers size={17} />,
     tags: [{ l: "Computer Vision" }, { l: "GenAI" }, { l: "Privacy-First" }],
     title: "MushBot",
@@ -1194,7 +1066,7 @@ const PROJECTS = [
     ],
     outcome: "A functional, privacy-preserving web app with a hybrid AI pipeline and safety guardrails woven into every step of the UX.",
     liveEl: null,
-    liveLabel: "Safety Pipeline",
+    liveLabel: null,
     liveLinks: [{ label: "View Live Project", url: "https://mushbot.onrender.com/" }],
     coverImage: "/assets/mushbot-cover.png",
     laptopFrame: true,
@@ -1202,37 +1074,11 @@ const PROJECTS = [
     mediaImages: [],
   },
   {
-    id: 4,
-    icon: <Coffee size={17} />,
-    tags: [{ l: "Figma Prototyping" }, { l: "UX Writing" }, { l: "Interactive" }],
-    title: "Ninja Coffee Guide",
-    tagline: "A digital ritual: Transforming a physical manual into an interactive experience.",
-    role: "UX Designer + Figma Prototyper",
-    tools: ["Figma", "Advanced Prototyping", "UX Writing"],
-    problem: "Physical product manuals are dense and linear, ignoring how users actually interact with appliances. The Ninja machine's manual failed to guide new users through setup in a calm, intuitive way.",
-    solution: "An interactive digital guide built in Figma that simulates the machine's physical interface. Users step through each stage with contextual visuals and UX copy written for calm and confidence.",
-    process: [
-      "Audited the original Ninja manual for clarity gaps and user anxiety trigger points",
-      "Mapped the full machine interaction model -buttons, modes, brew sequences -as a UX flow",
-      "Designed interactive screen states in Figma, mirroring the machine's physical display accurately",
-      "Wrote UX copy for each step: clear, warm, and completely jargon-free",
-      "Used Figma advanced prototyping (overlays, conditionals, scroll triggers) for a native-app feel",
-    ],
-    outcome: "A polished high-fidelity Figma prototype demonstrating how UX writing and interaction design transform a mundane appliance manual into a delightful product experience.",
-    liveEl: <NinjaPhone />,
-    liveLabel: "Figma Prototype -Mobile Screen Recording",
-    liveLinks: [{ label: "View Figma Prototype", url: "https://www.figma.com/proto/8PpWjHqQ4Eio9eZqSl1GIn/%D7%A0%D7%99%D7%A0%D7%92%D7%B3%D7%94-%D7%90%D7%A4%D7%99%D7%95%D7%9F-%D7%91%D7%9E%D7%95%D7%91%D7%99%D7%9C?page-id=46%3A2&node-id=555-203&viewport=1398%2C-599%2C0.14&t=ugECNsdmIFAJ9oKc-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=555%3A142&show-proto-sidebar=1" }],
-    phoneFrame: true,
-    coverImage: "/assets/Ninja-cover.png",
-    mediaVideos: ["/assets/Ninja.mp4"],
-    mediaImages: ["/assets/ninja.png"],
-  },
-  {
     id: 5,
     icon: <BookOpen size={17} />,
-    tags: [{ l: "Instructional Design" }, { l: "UX/UI" }, { l: "E-Learning" }],
-    title: "E-Learning Platform",
-    tagline: "A comprehensive digital learning experience designed for scalable instructional delivery.",
+    tags: [{ l: "Instructional Design" }, { l: "UX/UI" }, { l: "E-Learning" }, { l: "Ages 7–11" }],
+    title: "Gamified E-Learning",
+    tagline: "An interactive e-learning experience built for grades 2–5 - blending storytelling, visuals, and structured learning for young learners.",
     role: "Instructional Designer + UX/UI",
     tools: ["Figma", "Articulate 360", "HTML5", "CSS3"],
     problem: "Traditional learning management systems lack engaging, modern UI and fail to keep learners focused throughout complex instructional sequences.",
@@ -1259,7 +1105,7 @@ const PROJECTS = [
     id: 6,
     icon: <Wind size={17} />,
     tags: [{ l: "UX/UI" }, { l: "Motion Design" }, { l: "Interaction" }],
-    title: "Ruaj Gbit",
+    title: "Ruach Gabit",
     tagline: "A fluid, motion-driven interface designed for immersive digital experiences.",
     role: "UX/UI Designer + Motion",
     tools: ["Figma", "CSS Animation", "JavaScript"],
@@ -1369,12 +1215,29 @@ const Nav = () => {
 
 /* ─────────────────── FOOTER ─────────────────── */
 const Footer = () => (
-  <footer className="foot">
-    <span>© 2025 Nofar Baram</span>
+  <footer className="foot" style={{ flexWrap: "wrap", gap: "1rem" }}>
+    <span>© 2026 Nofar Baram</span>
+    <span style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
+      <a href="mailto:nofar344@gmail.com" title="Email me" style={{ color: "var(--muted)", transition: "color 0.2s" }} onMouseOver={e => e.currentTarget.style.color="var(--text)"} onMouseOut={e => e.currentTarget.style.color="var(--muted)"}>
+        <Mail size={18} />
+      </a>
+      <a href="https://wa.me/972556640500" target="_blank" rel="noreferrer" title="WhatsApp me" style={{ color: "var(--muted)", transition: "color 0.2s" }} onMouseOver={e => e.currentTarget.style.color="#25D366"} onMouseOut={e => e.currentTarget.style.color="var(--muted)"}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.015c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/nofar-baram/" target="_blank" rel="noreferrer" title="LinkedIn" style={{ color: "var(--muted)", transition: "color 0.2s" }} onMouseOver={e => e.currentTarget.style.color="#0A66C2"} onMouseOut={e => e.currentTarget.style.color="var(--muted)"}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <a href="/assets/Nofar%20Baram%20CV.pdf" download target="_blank" rel="noreferrer" title="Download CV" style={{ color: "var(--muted)", transition: "color 0.2s" }} onMouseOver={e => e.currentTarget.style.color="var(--text)"} onMouseOut={e => e.currentTarget.style.color="var(--muted)"}>
+        <Download size={18} />
+      </a>
+    </span>
     <span style={{ letterSpacing: "0.04em" }}>Creative Technologist & UX/UI Designer</span>
   </footer>
 );
-
 
 /* ─────────────────── HOME PAGE ─────────────────── */
 const HomePage = () => {
@@ -1392,7 +1255,7 @@ const HomePage = () => {
             </div>
           </FadeUp>
           <FadeUp delay={0.04}>
-            <p className="hero-intro">Hi 👋, I'm Nofar</p>
+            <p className="hero-intro">Hi👋, I'm Nofar</p>
           </FadeUp>
           <FadeUp delay={0.08}>
             <h1 className="hero-h1">
@@ -1403,7 +1266,7 @@ const HomePage = () => {
           </FadeUp>
           <FadeUp delay={0.12}>
             <p className="hero-body">
-              I design and build end-to-end digital products where <strong>AI-driven thinking</strong> meets pixel-perfect craft. UX research, Figma systems, full-stack implementation - from concept to launch.
+              Building thoughtful digital products with a focus on UX, product thinking, and AI.
             </p>
           </FadeUp>
           <FadeUp delay={0.18}>
@@ -1411,17 +1274,7 @@ const HomePage = () => {
               <Link className="btn-primary" to="#projects" onClick={e => { e.preventDefault(); document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }); }}>
                 View My Work <ChevronRight size={14} />
               </Link>
-              <Link className="btn-secondary" to="/contact">Get in Touch</Link>
-            </div>
-          </FadeUp>
-          <FadeUp delay={0.24}>
-            <div className="hero-stats">
-              {[{ n: "10+", l: "Projects" }, { n: "B.A.", l: "Learning Tech" }, { n: "Code", l: "Frontend Skills" }, { n: "AI", l: "Native Designer" }].map(s => (
-                <div key={s.l}>
-                  <div className="hstat-n"><CountUp value={s.n} /></div>
-                  <div className="hstat-l">{s.l}</div>
-                </div>
-              ))}
+              <a className="btn-secondary" href="/assets/Nofar%20Baram%20CV.pdf" download="Nofar_Baram_CV.pdf" target="_blank" rel="noreferrer"><Download size={14} /> Download CV</a>
             </div>
           </FadeUp>
         </div>
@@ -1429,19 +1282,19 @@ const HomePage = () => {
           <div style={{ transform: `translate(${parallax.x}px, ${parallax.y}px)`, transition: "transform 0.5s cubic-bezier(0.17,0.67,0.45,1)", willChange: "transform" }}>
             <div className="orbit-wrap">
               <div className="orbit-ring orbit-ring-1">
-                <OBadge label="JS"  bg="#F7DF1E" color="#2B2B2B"               pos={{ left:"40.5%", top:"-9.5%" }} />
-                <OBadge label="Fg"  bg="#1E0533" color="#A259FF" fs="0.6rem"   pos={{ left:"84%",   top:"65.5%" }} />
-                <OBadge label="Py"  bg="#1C3557" color="#F7D23E" fs="0.58rem"  pos={{ left:"-3%",   top:"65.5%" }} />
+                <OBadge label="JS"  bg="#F7DF1E" color="#2B2B2B"               pos={{ left:"81px",  top:"-19px" }} />
+                <OBadge label="Fg"  bg="#1E0533" color="#A259FF" fs="0.6rem"   pos={{ left:"168px", top:"131px" }} />
+                <OBadge label="Py"  bg="#1C3557" color="#F7D23E" fs="0.58rem"  pos={{ left:"-6px",  top:"131px" }} />
               </div>
               <div className="orbit-ring orbit-ring-2">
-                <OBadge label="Ps"  bg="#001E36" color="#31A8FF" fs="0.6rem"   pos={{ left:"86.4%", top:"18.2%" }} />
-                <OBadge label="Ai"  bg="#300000" color="#FF9A00" fs="0.6rem"   pos={{ left:"43.2%", top:"93.2%" }} />
-                <OBadge label="C#"  bg="#512BD4" color="#ffffff"               pos={{ left:"0%",    top:"18.2%" }} />
+                <OBadge label="Ps"  bg="#001E36" color="#31A8FF" fs="0.6rem"   pos={{ left:"242px", top:"51px"  }} />
+                <OBadge label="Ai"  bg="#300000" color="#FF9A00" fs="0.6rem"   pos={{ left:"121px", top:"261px" }} />
+                <OBadge label="C#"  bg="#512BD4" color="#ffffff"               pos={{ left:"0px",   top:"51px"  }} />
               </div>
               <div className="orbit-ring orbit-ring-3">
-                <OBadge label="Unity" bg="#1A1A1A" color="#ffffff" fs="0.5rem"  pos={{ left:"44.4%", top:"-5.6%"  }} />
-                <OBadge label="GPT"   bg="#10A37F" color="#ffffff" fs="0.54rem" pos={{ left:"87.6%", top:"69.4%"  }} />
-                <OBadge label="A360"  bg="#E8591A" color="#ffffff" fs="0.45rem" pos={{ left:"1.2%",  top:"69.4%"  }} />
+                <OBadge label="Unity" bg="#1A1A1A" color="#ffffff" fs="0.5rem"  pos={{ left:"151px", top:"-19px"  }} />
+                <OBadge label="GPT"   bg="#10A37F" color="#ffffff" fs="0.54rem" pos={{ left:"298px", top:"236px"  }} />
+                <OBadge label="A360"  bg="#E8591A" color="#ffffff" fs="0.45rem" pos={{ left:"4px",   top:"236px"  }} />
               </div>
               <div className="orbit-core" />
             </div>
@@ -1506,7 +1359,7 @@ const ProjectDetailPage = () => {
       {/* Header */}
       <div className="proj-hero">
         <FadeUp>
-          <button className="back-btn" onClick={() => navigate({ pathname: "/", hash: "#projects" })}>
+          <button className="back-btn" onClick={() => navigate(-1)}>
             <ArrowLeft size={14} /> Back
           </button>
         </FadeUp>
@@ -1515,7 +1368,7 @@ const ProjectDetailPage = () => {
           {p.wip && (
             <div className="wip-notice">
               <div className="wip-dot" style={{ width: 7, height: 7 }} />
-              Work in Progress - actively in development
+              Work in Progress — actively in development
             </div>
           )}
           <h1 className="proj-title">{p.title}</h1>
@@ -1583,14 +1436,9 @@ const ProjectDetailPage = () => {
               <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap", paddingTop: "0.5rem" }}>
                 {p.mediaVideos.map((v, i) => (
                   <div className="iphone-wrap" key={i} style={{ padding: 0 }}>
-                    <div className="iphone-outer">
-                      <div className="iphone-side-btn" />
-                      <div className="iphone-side-vol" />
-                      <div className="iphone-side-vol iphone-side-vol2" />
-                      <div className="iphone-island" />
-                      <div className="iphone-screen">
-                        <video src={v} autoPlay loop muted playsInline />
-                      </div>
+                    <div className="iphone-frame">
+                      <img className="iphone-frame-img" src="/assets/iphone-frame.png" alt="" />
+                      <video src={v} autoPlay loop muted playsInline controls />
                     </div>
                   </div>
                 ))}
@@ -1602,7 +1450,7 @@ const ProjectDetailPage = () => {
             ) : (
               <div className="media-col">
                 {p.mediaVideos.map((v, i) => (
-                  <video key={i} src={v} autoPlay loop muted playsInline
+                  <video key={i} src={v} autoPlay loop muted playsInline controls
                     style={{ width: "100%", maxWidth: "780px", margin: "0 auto", borderRadius: "16px", display: "block", border: "1px solid var(--border)" }} />
                 ))}
               </div>
@@ -1693,8 +1541,6 @@ const AboutPage = () => {
           <div>
             <FadeUp delay={0.08}>
               <p className="about-p">I'm a <strong>Creative Technologist & UX/UI Designer</strong> in my 3rd year of Instructional Technologies at HIT -blending design thinking, AI integration, and full-stack development into products that are both beautiful and bulletproof.</p>
-              <p className="about-p">My <strong>QA Game Testing background</strong> gives me a systematic, edge-case-obsessed approach that most designers don't have. I've broken more products than I've built -and that makes me build far better ones.</p>
-              <p className="about-p"><strong>2+ years at Wolt</strong> (Senior Operations) trained me to make high-stakes decisions under pressure, navigate complex data systems, and always keep the user at the centre of operational complexity.</p>
               <p className="about-p">I'm at my best at the intersection of <strong>AI innovation, visual design, and technical precision</strong> -where systems are designed to be both elegant and resilient.</p>
             </FadeUp>
             <FadeUp delay={0.12}>
@@ -1768,12 +1614,29 @@ const ContactPage = () => {
           <h1 className="contact-h contact-accent">Let's build<br /><em>something great.</em></h1>
           <p className="contact-sub">Open to UX design roles, creative tech collaborations, and AI-driven product challenges. Let's make something worth using.</p>
           <div className="clinks">
-            <a className="clink" href="mailto:Nofbar344@gmail.com"><Mail size={14} /> Nofbar344@gmail.com</a>
-            <a className="clink" href="https://www.linkedin.com/in/nofar-baram/" target="_blank" rel="noreferrer"><ExternalLink size={14} /> LinkedIn</a>
+            <a className="clink" href="mailto:nofar344@gmail.com">
+              <Mail size={16} /> nofar344@gmail.com
+            </a>
+            <a className="clink" href="https://wa.me/972556640500" target="_blank" rel="noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              WhatsApp Me
+            </a>
+            <a className="clink" href="https://www.linkedin.com/in/nofar-baram/" target="_blank" rel="noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </a>
+            <a className="clink" href="/assets/Nofar%20Baram%20CV.pdf" download target="_blank" rel="noreferrer">
+              <Download size={16} /> Download CV
+            </a>
           </div>
         </div>
       </FadeUp>
-      <Footer />
     </div>
   );
 };
