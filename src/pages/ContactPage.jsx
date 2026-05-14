@@ -33,11 +33,6 @@ const ContactPage = () => {
             </a>
           </div>
 
-          {/* Row 2 — Helper text */}
-          <p style={{ fontSize: "0.78rem", color: "var(--muted)", marginBottom: "2rem", letterSpacing: "0.01em" }}>
-            or drop a line at:&nbsp;
-            <span style={{ color: "var(--text)", fontWeight: 500, userSelect: "all" }}>nofar344@gmail.com</span>
-          </p>
 
           {/* Row 3 — Social icons only */}
           <div style={{ display: "flex", gap: "1.5rem", justifyContent: "center", alignItems: "center" }}>
